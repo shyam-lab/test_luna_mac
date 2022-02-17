@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install LightGBM
         run: |
-          cd $HOME
+          cd ${GITHUB_WORKSPACE}
           brew install cmake
           brew install libomp
           git clone --recursive https://github.com/microsoft/LightGBM
@@ -37,8 +37,11 @@ jobs:
       - name: Make
         run: |
              g++ -v
-             make ARCH=MAC FFTW=${HOME}/fftw-3.3.8 LGBM=1 LGBM_PATH=${HOME}/LightGBM 
-             tar cvzf mac-luna.tar.gz luna behead destrat
+             make ARCH=MAC FFTW=${HOME}/fftw-3.3.8 LGBM=1 LGBM_PATH=${${GITHUB_WORKSPACE}}/LightGBM 
+             tar cvzf mac-luna.tar.gz luna behead destrat LightGBM
+             install_name_tool -add_rpath  @executable_path/LightGBM/. ./luna
+             install_name_tool -add_rpath  @executable_path/LightGBM/. ./destrat
+             install_name_tool -add_rpath  @executable_path/LightGBM/. ./behead
              ./luna -v
              ls -lh luna destrat
       - uses: actions/upload-artifact@v2
