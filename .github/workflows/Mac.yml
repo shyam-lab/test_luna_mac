@@ -37,7 +37,7 @@ jobs:
       - name: Make
         run: |
              g++ -v
-             make ARCH=MAC LGBM=1 LGBM_PATH=${HOME}/LightGBM FFTW=${HOME}/fftw-3.3.8
+             make ARCH=MAC FFTW=${HOME}/fftw-3.3.8 LGBM=1 LGBM_PATH=${HOME}/LightGBM 
              tar cvzf mac-luna.tar.gz luna behead destrat
              ./luna -v
              ls -lh luna destrat
