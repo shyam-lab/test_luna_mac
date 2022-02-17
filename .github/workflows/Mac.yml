@@ -34,7 +34,6 @@ jobs:
           make
           make install
           cd ${GITHUB_WORKSPACE}
-          brew install fftw
       - name: Make
         run: |
              g++ -v
