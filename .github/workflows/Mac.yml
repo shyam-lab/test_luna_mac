@@ -45,6 +45,7 @@ jobs:
              install_name_tool -add_rpath  @executable_path/LightGBM_shared/. ./behead
              ./luna -v
              ls -lh luna destrat
+             ls -l
       - uses: actions/upload-artifact@v2
         with:
           name: mac-luna.tar.gz
