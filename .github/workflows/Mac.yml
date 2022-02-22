@@ -37,13 +37,10 @@ jobs:
       - name: Make
         run: |
              mkdir LightGBM_shared
-             cp ${HOME}/LightGBM/lib_lightgbm.so LightGBM_shared/
-             make ARCH=MAC FFTW=${HOME}/fftw-3.3.8 LGBM=1 LGBM_PATH=${HOME}/LightGBM 
-             install_name_tool -add_rpath  @executable_path/LightGBM_shared/. ./luna
-             install_name_tool -add_rpath  @executable_path/LightGBM_shared/. ./destrat
-             install_name_tool -add_rpath  @executable_path/LightGBM_shared/. ./behead
+             cp ${HOME}/LightGBM/lib_lightgbm.so .
+             make ARCH=MAC FFTW=${HOME}/fftw-3.3.8 LGBM=1 LGBM_PATH=${HOME}/LightGBM
              otool -l ./luna
-             tar cvzf mac-luna.tar.gz luna behead destrat LightGBM_shared
+             tar cvzf mac-luna.tar.gz luna behead destrat lib_lightgbm.so
              ./luna -v
              ls -lh luna destrat
              ls -l
