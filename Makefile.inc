@@ -81,6 +81,7 @@ ifeq ($(LGBM),1)
 ifeq ($(ARCH), LINUX)
 LDFLAGS += -Wl,-rpath=${LGBM_PATH} -l_lightgbm
 else
+LDFLAGS += -Wl,-rpath ${LGBM_PATH} -l_lightgbm 
 LDFLAGS += -Wl,-rpath . -l_lightgbm
 endif
 endif
