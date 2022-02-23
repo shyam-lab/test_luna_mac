@@ -24,6 +24,7 @@ jobs:
           cd build
           cmake ..
           make -j4
+          ls
       - name: Install fftw
         run: |
           cd ${HOME}
@@ -39,6 +40,9 @@ jobs:
              mkdir LightGBM_shared
              cp ${HOME}/LightGBM/lib_lightgbm.so .
              make ARCH=MAC FFTW=${HOME}/fftw-3.3.8 LGBM=1 LGBM_PATH=${HOME}/LightGBM
+             install_name_tool -add_rpath  @executable_path/. ./luna
+             install_name_tool -add_rpath  @executable_path/. ./destrat
+             install_name_tool -add_rpath  @executable_path/. ./behead
              otool -l ./luna
              tar cvzf mac-luna.tar.gz luna behead destrat lib_lightgbm.so
              ./luna -v
