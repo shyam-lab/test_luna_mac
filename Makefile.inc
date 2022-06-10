@@ -79,7 +79,10 @@ LDFLAGS += -L/usr/local/lib -lfftw3 -lz
 endif
 
 ifeq ($(LGBM),1)
+ifdef LGBM_PATH
 LDFLAGS += -Wl,-rpath ${LGBM_PATH} -l_lightgbm 
+endif
+LDFLAGS += -Wl,-rpath . -l_lightgbm
 endif
 
 
