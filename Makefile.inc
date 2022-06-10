@@ -82,7 +82,7 @@ ifeq ($(LGBM),1)
 ifdef LGBM_PATH
 LDFLAGS += -Wl,-rpath ${LGBM_PATH} -l_lightgbm 
 endif
-LDFLAGS += -Wl,-rpath . -l_lightgbm
+LDFLAGS += -l_lightgbm
 endif
 
 
