@@ -47,36 +47,3 @@ jobs:
         with:
           name: mac-luna.tar.gz
           path: mac-luna.tar.gz
-  release:
-    runs-on: ubuntu-latest
-    needs: [macos-build]
-    steps:
-      - uses: actions/checkout@v2
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Luna_Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-      - uses: actions/download-artifact@v2
-        id: download
-        with:
-          path: .   
-      - run: |
-          echo ${{steps.download.outputs.download-path}}
-          cd ${{steps.download.outputs.download-path}}
-          mv mac-luna.tar.gz/mac-luna.tar.gz mac_luna.tar.gz
-      - name: Upload Release Asset Mac
-        id: upload-release-asset-mac
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.SECRET }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: mac_luna.tar.gz
-          asset_name: mac_luna.tar.gz
-          asset_content_type: application/gzip
