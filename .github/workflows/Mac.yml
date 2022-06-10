@@ -42,7 +42,7 @@ jobs:
              install_name_tool -add_rpath  @executable_path/. ./destrat
              install_name_tool -add_rpath  @executable_path/. ./behead
              otool -l ./luna
-             tar cvzf mac-luna.tar.gz luna-${v}/
+             tar cvzf mac-luna.tar.gz luna destrat behead
       - uses: actions/upload-artifact@v2
         with:
           name: mac-luna.tar.gz
