@@ -38,7 +38,6 @@ jobs:
         run: |
              cp ${HOME}/LightGBM/lib_lightgbm.so .
              make ARCH=MAC FFTW=${HOME}/fftw-3.3.8 LGBM=1 LGBM_PATH=${HOME}/LightGBM
-             cp luna destrat behead lib_lightgbm.so 
              install_name_tool -add_rpath  @executable_path/. ./luna
              install_name_tool -add_rpath  @executable_path/. ./destrat
              install_name_tool -add_rpath  @executable_path/. ./behead
